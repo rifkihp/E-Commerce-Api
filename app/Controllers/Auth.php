@@ -44,7 +44,6 @@ class Auth extends BaseController
             id,
             first_name,
             last_name,
-            referal,
             email,
             phone,
             username,
