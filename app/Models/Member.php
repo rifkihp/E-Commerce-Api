@@ -14,7 +14,7 @@ class Member extends Model
     protected $returnType           = 'array';
     protected $useSoftDeletes       = false;
     protected $protectFields        = true;
-    protected $allowedFields        = ['id', 'username', 'referensi_id', 'first_name', 'last_name', 'email', 'password', 'phone', 'dropship_name', 'dropship_phone', 'referal',
+    protected $allowedFields        = ['id', 'username', 'referensi_id', 'first_name', 'last_name', 'email', 'password', 'phone', 'dropship_name', 'dropship_phone',
                                         'jenis_user', 'photo', 'gcm_regid', 'gcm_datetime_update', 'hash', 'aktif', 'admin', 'saldo', 'kode_reset_password', 'is_open', 
                                         'tanggal_jam_create', 'alamat_kirim', 'tipe'];
 

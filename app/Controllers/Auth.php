@@ -127,6 +127,8 @@ class Auth extends BaseController
         $_password     = $this->request->getPost('password');
         $_konfirmasi   = $this->request->getPost('konfirmasi');
         $_referal      = $this->request->getPost('referal');
+        $_referensi_id = 0;
+        
         $_user_picture = 'default.png';
 
         $_DATA = [
@@ -197,7 +199,24 @@ class Auth extends BaseController
 
 			return $this->respond($response, 200);
         }
-		
+
+        //CHECK VALID REFERAL;
+        if($_referal!="") {
+            $builder = $model->select('id');
+            $builder->where('username', $_referal);
+            $check = $builder->get()->getRowArray();
+            if($check) {
+                $_referensi_id = $check['id'];
+            } else {
+                $response = [
+                    'success' => false,
+                    'message' => 'Username referal tidak valid.'
+                ];
+    
+                return $this->respond($response, 200);
+            }
+        }
+
         //VALIDASI PASSWORD
         if(strlen($_password)<6) {
             $response = [
@@ -222,7 +241,7 @@ class Auth extends BaseController
         $date = new \DateTime('now', new \DateTimeZone('Asia/Jakarta'));
 		$_DATA = [
 			'username'           => $_username,
-			'referal'            => $_referal,
+			'referensi_id'       => $_referensi_id,
             'first_name'         => $_first_name,
             'last_name'          => $_last_name,
             'phone'              => $_nohp,
